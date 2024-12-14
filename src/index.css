@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './styles/editor.css';
+
+/* Base responsive typography */
+@layer base {
+  html {
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 14px;
+    }
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold;
+  }
+}
+
+/* Responsive container widths */
+.container-fluid {
+  width: clamp(320px, 90vw, 1280px);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Responsive spacing utilities */
+.section-padding {
+  padding: clamp(2rem, 5vw, 6rem) 0;
+}
+
+/* Responsive grid system */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(1rem, 3vw, 2rem);
+}
+
+/* Print styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #resume-preview,
+  #resume-preview * {
+    visibility: visible;
+  }
+  #resume-preview {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  .print-hide {
+    display: none !important;
+  }
+}
+
+/* Prevent content overflow */
+.preview-section {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+/* Responsive images */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Touch-friendly buttons on mobile */
+@media (max-width: 768px) {
+  button, 
+  .button,
+  [role="button"] {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+  }
+}
+
+/* Smooth transitions */
+.modal-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 300ms ease-out, transform 300ms ease-out;
+}
+
+.modal-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 300ms ease-in, transform 300ms ease-in;
+}
